@@ -1,19 +1,10 @@
-import styled from 'styled-components';
 import Bar from '../Bar';
 import TextWrapper from '../TextWrapper';
-
-const Container = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  gap: 15px;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
-`;
+import { Container } from '../Container';
 
 const Materials = ({ materials }) => {
   return (
-    <Container>
+    <Container section={'2nd'}>
       <Bar $lighted>Materiais</Bar>
       <TextWrapper $_flex $_styled items={materials.map((item) => {return item.name;})}>
         Itens

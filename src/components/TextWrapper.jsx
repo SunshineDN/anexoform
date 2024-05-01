@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Title } from './Generals';
 
 const Container = styled.div`
   display: flex;
@@ -9,24 +10,19 @@ const Container = styled.div`
   ${props => props.$_center && 'flex: .5'}; // 50%
 
   & * {
-    font-size: .625rem; // 10px
+    font-size: .625rem !important; // 10px
   }
-`;
-
-const Title = styled.h2`
-  font-weight: 700;
-  color: #000;
-  text-transform: uppercase;
 `;
 
 const ItemsWrapper = styled.ul`
   display: flex;
   flex-flow: column nowrap;
+
   gap: .094rem; // 1.5px
   align-items: ${props => props.$_center ? 'center' : 'flex-start'};
   justify-content: flex-start;
   margin-left: ${props => props.$_styled ? '0' : '1.10rem'}; // 17.6px
-  ${props => props.$_center && 'margin-left: 0.450rem;'} // 4.8px
+  ${props => props.$_center && 'margin-left: 0.450rem; width: 1.2rem;'}
 `;
 
 const Item = styled.li`

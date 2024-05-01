@@ -6,6 +6,9 @@ import Scope from './components/FirstSection/Scope';
 import { useState } from 'react';
 import TestedParameters from './components/FirstSection/TestedParameters';
 import Materials from './components/SecondSection/Materials';
+import Equipament from './components/SecondSection/Equipament';
+import Services from './components/SecondSection/Services';
+import MoreCost from './components/SecondSection/MoreCost';
 
 const Container = styled.div`
   display: flex;
@@ -13,7 +16,19 @@ const Container = styled.div`
   align-items: flex-start;
   justify-content: center;
   gap: 15px;
-  margin: 36px;
+
+  &:nth-child(odd){
+    page-break-after: always;
+  }
+
+  /* @media print {
+    &:nth-child(1) {
+      page-break-after: always;
+    }
+    &:nth-child(2) {
+      page-break-after: always;
+    }
+  } */
 `;
 
 function App() {
@@ -92,6 +107,26 @@ function App() {
     },
   ]);
 
+  const [equipaments] = useState([
+    {
+      name: 'EAP620HD TP-LINK',
+      quantity: 2
+    }
+  ]);
+
+  const [services] = useState([
+    'Identificação do Ponto de Telecomunicação',
+    'Instalação e montagem de Rack de Piso',
+    'Montagem de Patch Panel Cat.6',
+    'Instalação de Patch Cord',
+  ]);
+
+  const [costs] = useState([
+    'Substituição de cada Patch Cord 1,5m Soho Plus',
+    'Substituição de cada Conector RJ-45 Fêmea',
+    'Desmobilização de Rack'
+  ]);
+
   return (
     <>
       <Container>
@@ -100,10 +135,13 @@ function App() {
         <ActualStatus items={items1} />
         <Scope items={items2} />
         <TestedParameters items={items3} />
-      </ Container>
+      </Container>
       <Container>
         <Bar>Anexo</Bar>
         <Materials materials={materials} />
+        <Equipament equipaments={equipaments} />
+        <Services services={services} />
+        <MoreCost costs={costs} />
       </Container>
     </>
   );

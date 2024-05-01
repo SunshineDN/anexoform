@@ -10,7 +10,7 @@ const Header = styled.header`
 `;
 
 const Title = styled.h1`
-  font-size: .75rem; // 12px
+  font-size: .75rem !important; // 12px
   font-weight: 700;
   color: #fff;
   text-transform: uppercase;
