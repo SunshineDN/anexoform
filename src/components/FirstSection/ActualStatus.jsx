@@ -21,10 +21,10 @@ const Image = styled.img`
   border: .031rem solid #000; // 0.5px
 `;
 
-const ActualStatus = ({ items }) => {
+const ActualStatus = ({ status }) => {
   return (
     <Container section={'1st'} $_flexFlow={'row wrap'} $_alignItems={'flex-start'} $_justifyContent={'space-between'}>
-      <TextWrapper items={items}>Situação Atual</TextWrapper>
+      <TextWrapper status={status}>Situação Atual</TextWrapper>
       <ImagesWrapper>
         <Image src='' alt='Imagem do status atual' />
         <Image src='' alt='Imagem do status atual' />

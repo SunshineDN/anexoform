@@ -1,9 +1,9 @@
 import TextWrapper from '../TextWrapper';
 
 
-const TestedParameters = ({ items }) => {
+const TestedParameters = ({ params }) => {
   return (
-    <TextWrapper items={items}>Parâmetros Testados</TextWrapper>
+    <TextWrapper params={params}>Parâmetros Testados</TextWrapper>
   );
 };
 

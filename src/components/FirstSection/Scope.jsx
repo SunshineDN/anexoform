@@ -2,11 +2,11 @@ import TextWrapper from '../TextWrapper';
 import { Line, Title } from '../Generals';
 import { Container } from '../Container';
 
-const Scope = ({ items }) => {
+const Scope = ({ solution }) => {
   return (
     <Container section={'1st'}>
       <Title>Escopo da Proposta</Title>
-      <TextWrapper items={items}>Solução Cabeamento Estruturado</TextWrapper>
+      <TextWrapper solution={solution}>Solução Cabeamento Estruturado</TextWrapper>
       <Line />
     </Container> 
   );
