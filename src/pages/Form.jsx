@@ -5,7 +5,7 @@ const Form = ({ savePdf }) => {
   const { status, setStatus } = useContext(ObjContext);
 
   return (
-    <form>
+    <form action=''>
       <h1>Formulário</h1>
       <button onClick={
         (e) => {

@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ReactDOM from 'react-dom/client';
 import Pdf from '../pages/PdfPage';
 import Form from '../pages/Form';
 import { PrivateRoute } from './PrivateRoute';
@@ -18,20 +17,25 @@ const Rotas = () => {
 
   const handleSaveAsPDF = () => {
     const doc = new jsPDF();
-
-    const div = document.createElement('div');
-    const root = ReactDOM.createRoot(div);
     
-    // Renderiza o componente ComponenteParaImprimir
-    root.render(<Pdf />);
-
-    const htmlString = div.innerHTML;
-
-    doc.html(htmlString, {
-      callback: () => {
-        doc.save('componente_para_imprimir.pdf');
-      }
-    });
+    // Acessa a rota da página para PDF
+    window.location.href = '/pdf';
+    
+    // Aguarda um curto período para garantir que a página seja completamente carregada
+    setTimeout(() => {
+      console.log('Aguardando 1 segundo...');
+      // Captura o conteúdo HTML do componente renderizado
+      const componenteParaPDF = document.getElementById('pdf');
+      const htmlString = componenteParaPDF.innerHTML;
+      
+      // Adiciona o conteúdo HTML ao documento PDF
+      doc.html(htmlString, {
+        callback: () => {
+          // Salva o documento PDF
+          doc.save('componente_para_pdf.pdf');
+        }
+      });
+    }, 1000); // Tempo de espera de 1 segundo
   };
 
 

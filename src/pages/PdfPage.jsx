@@ -32,7 +32,7 @@ const Container = styled.div`
 
 const PdfPage = () => {
   return (
-    <span>
+    <span id='pdf'>
       <Container>
         <Bar>Anexo</Bar>
         <Objective />
