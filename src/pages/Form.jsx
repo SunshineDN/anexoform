@@ -320,7 +320,7 @@ const Form = () => {
         </InputsWrapper>
 
         <InputsWrapper>
-          <H3>Status</H3>
+          <H3>Situação Atual</H3>
           <List>
             {status.map((item, index) => {
               return (
