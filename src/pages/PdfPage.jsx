@@ -8,6 +8,11 @@ import Materials from '../components/SecondSection/Materials';
 import Equipament from '../components/SecondSection/Equipament';
 import Services from '../components/SecondSection/Services';
 import MoreCost from '../components/SecondSection/MoreCost';
+import { useContext } from 'react';
+import { PdfRef } from '../context/PdfContext';
+import { ObjContext } from '../context/ObjContext';
+
+const Span = styled.span``;
 
 const Container = styled.div`
   display: flex;
@@ -31,23 +36,26 @@ const Container = styled.div`
 `;
 
 const PdfPage = () => {
+  const { pdfRef } = useContext(PdfRef);
+  const { status, solutions, params, materials, equipaments, services, costs, images } = useContext(ObjContext);
+
   return (
-    <span id='pdf'>
+    <Span ref={pdfRef}>
       <Container>
         <Bar>Anexo</Bar>
         <Objective />
-        <ActualStatus status={[]} />
-        <Scope solution={[]} />
-        <TestedParameters params={[]} />
+        <ActualStatus status={status} images={images} />
+        <Scope solution={solutions} />
+        <TestedParameters params={params} />
       </Container>
       <Container>
         <Bar>Anexo</Bar>
-        <Materials materials={[]} />
-        <Equipament equipaments={[]} />
-        <Services services={[]} />
-        <MoreCost costs={[]} />
+        <Materials materials={materials} />
+        <Equipament equipaments={equipaments} />
+        <Services services={services} />
+        <MoreCost costs={costs} />
       </Container>
-    </span>
+    </Span>
   );
 };
 

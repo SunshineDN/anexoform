@@ -1,5 +1,9 @@
-import { RefContextProvider } from './context/RefContext';
-import Rotas from './routes/Rotas';
+import { useContext } from 'react';
+import { InvisibleContext } from './context/InvisibleContext';
+import { ObjContextProvider } from './context/ObjContext';
+import { PdfRefProvider } from './context/PdfContext';
+import Form from './pages/Form';
+import PdfPage from './pages/PdfPage';
 
 function App() {
   // const [items1] = useState([
@@ -97,11 +101,15 @@ function App() {
   //   'Desmobilização de Rack'
   // ]);
 
+  const { isInvisible } = useContext(InvisibleContext);
   return (
     <>
-      <RefContextProvider>
-        <Rotas />
-      </RefContextProvider>
+      <ObjContextProvider>
+        <PdfRefProvider>
+            <Form />
+            {isInvisible && <span id='invisible'><PdfPage /></span>}
+        </PdfRefProvider>
+      </ObjContextProvider>
     </>
   );
 }

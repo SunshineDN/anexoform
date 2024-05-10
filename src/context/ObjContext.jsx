@@ -7,7 +7,7 @@ export const ObjContextProvider = ({ children }) => {
   const [status, setStatus] = useState([]);
 
   // Exemplo: 'Identificar 142 pontos de rede;',
-  const [solution, setSolution] = useState([]);
+  const [solutions, setSolutions] = useState([]);
 
   // Exemplo: 'Fazer a certificação requer equipamentos especializados e envolve uma série de parâmetros a serem testados conforme determinação da norma técnica ANSI/TIA-568-C (2009).',
   const [params, setParams] = useState([]);
@@ -29,7 +29,7 @@ export const ObjContextProvider = ({ children }) => {
   return (
   <ObjContext.Provider value={{
     status, setStatus,
-    solution, setSolution,
+    solutions, setSolutions,
     params, setParams,
     materials, setMaterials,
     equipaments, setEquipaments,

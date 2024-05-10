@@ -6,7 +6,7 @@ const Scope = ({ solution }) => {
   return (
     <Container section={'1st'}>
       <Title>Escopo da Proposta</Title>
-      <TextWrapper solution={solution}>Solução Cabeamento Estruturado</TextWrapper>
+      <TextWrapper items={solution}>Solução Cabeamento Estruturado</TextWrapper>
       <Line />
     </Container> 
   );

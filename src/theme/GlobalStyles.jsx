@@ -7,8 +7,17 @@ export default createGlobalStyle`
     margin: 0;
   }
 
+  @page {
+    size: A4;
+    margin: 10mm 10mm 10mm;
+  }
+
   html {
     font-size: 135%;
     font-family: 'Inter', sans-serif;
+  }
+
+  #invisible {
+    display: none;
   }
 `;

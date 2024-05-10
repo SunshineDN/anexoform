@@ -3,7 +3,7 @@ import TextWrapper from '../TextWrapper';
 
 const TestedParameters = ({ params }) => {
   return (
-    <TextWrapper params={params}>Parâmetros Testados</TextWrapper>
+    <TextWrapper items={params}>Parâmetros Testados</TextWrapper>
   );
 };
 

@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import TextWrapper from '../TextWrapper';
 import { Line } from '../Generals';
 import { Container } from '../Container';
-// import Img from '../assets/ex.jpg';
-// import Img2 from '../assets/ex2.jpg';
+// import Img from '../../assets/ex.jpg';
+// import Img2 from '../../assets/ex2.jpeg';
 
 const ImagesWrapper = styled.div`
   display: flex;
@@ -21,13 +21,15 @@ const Image = styled.img`
   border: .031rem solid #000; // 0.5px
 `;
 
-const ActualStatus = ({ status }) => {
+const ActualStatus = ({ status, images }) => {
+
   return (
     <Container section={'1st'} $_flexFlow={'row wrap'} $_alignItems={'flex-start'} $_justifyContent={'space-between'}>
-      <TextWrapper status={status}>Situação Atual</TextWrapper>
+      <TextWrapper items={status}>Situação Atual</TextWrapper>
       <ImagesWrapper>
-        <Image src='' alt='Imagem do status atual' />
-        <Image src='' alt='Imagem do status atual' />
+        {images?.map((image, index) => {
+          return <Image key={index} src={image.path} />;
+        })}
       </ImagesWrapper>
       <Line />
     </Container>
