@@ -4,8 +4,140 @@ import { PdfRef } from '../context/PdfContext';
 import { useReactToPrint } from 'react-to-print';
 import { InvisibleContext } from '../context/InvisibleContext';
 
+import styled from 'styled-components';
+import { IoRemoveCircle } from 'react-icons/io5';
+
+const Container = styled.form`
+  display: flex;
+  flex-flow: row wrap;
+  gap: .625rem; // 10px
+  justify-content: center;
+  // Deixar apenas 2 colunas
+
+  & > * {
+    font-family: 'Inter', sans-serif !important;
+  }
+`;
+
+const InputsWrapper = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+`;
+
+const Button = styled.button`
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: .625rem; // 10px
+  cursor: pointer;
+  transition: color .3s, background-color .3s;
+
+  
+  &:hover {
+    background-color: #fff;
+    color: #000;
+  }
+`;
+
+const RemoveIcon = styled(IoRemoveCircle)`
+  color: #000;
+  cursor: pointer;
+  transition: all .3s;
+
+  &:hover {
+    color: #f00;
+  }
+`;
+
+const LastButton = styled.button`
+  --_c: #88C100;
+  flex: calc(1.25 + var(--_s,0));
+  min-width: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  height: var(--h);
+  cursor: pointer;
+  color: var(--_c);
+  border: var(--b) solid var(--_c);
+  background: 
+    conic-gradient(at calc(100% - 1.3*var(--b)) 0,var(--_c) 209deg, #0000 211deg) 
+    border-box;
+  clip-path: polygon(0 0,100% 0,calc(100% - 0.577*var(--h)) 100%,0 100%);
+  padding: 0 calc(0.288*var(--h)) 0 0;
+  margin: 0 calc(-0.288*var(--h)) 0 0;
+  box-sizing: border-box;
+  transition: flex .4s, color .2s, box-shadow .2s;
+
+  &:focus-visible {
+    outline-offset: calc(-2*var(--b));
+    outline: calc(var(--b)/2) solid #000;
+    background: none;
+    clip-path: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &:hover, &:active:not(:focus-visible) {
+    --_s: .75;
+  }
+
+  &:active{
+    box-shadow: inset 0 0 0 100vmax var(--_c);
+    color: #fff;
+  }
+`;
+
+const LastButtons = styled.div`
+  display: flex;
+  align-items: center;
+  width: 380px;
+  gap: 10px;
+  --b: 5px;   /* the border thickness */
+  --h: 1.8em; /* the height */
+
+  & ${LastButton} + ${LastButton} {
+    --_c: #FF003C;
+    flex: calc(1.3 + var(--_s,0));
+    background: 
+      conic-gradient(from -90deg at calc(1.3*var(--b)) 100%,var(--_c) 119deg, #0000 121deg) 
+      border-box;
+    clip-path: polygon(calc(0.577*var(--h)) 0,100% 0,100% 100%,0 100%);
+    margin: 0 0 0 calc(-0.288*var(--h));
+    padding: 0 0 0 calc(0.288*var(--h));
+  }
+
+  & ${LastButton}:focus-visible + ${LastButton} {
+    background: none;
+    clip-path: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  & ${LastButton}:has(+ ${LastButton}:focus-visible) {
+    background: none;
+    clip-path: none;
+    margin: 0;
+    padding: 0
+  }
+`;
+
+const List = styled.ul`
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+`;
+
+const ListItem = styled.li`
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 10px;
+  list-style: none;
+`;
+
 const Form = () => {
-  const { status, setStatus,
+  const { objective, setObjective, status, setStatus,
     solutions, setSolutions,
     params, setParams,
     materials, setMaterials,
@@ -31,6 +163,7 @@ const Form = () => {
   });
   const hanleRemoveAll = (e) => {
     e.preventDefault();
+    setObjective('');
     setStatus([]);
     setSolutions([]);
     setParams([]);
@@ -101,152 +234,158 @@ const Form = () => {
   };
 
   return (
-    <form action=''>
+    <Container action=''>
       <h1>Formulário</h1>
-      <div>
+      <InputsWrapper>
+        <p>Objetivo</p>
+        <input type='text' value={objective} onChange={(e) => setObjective(e.target.value)} />
+      </InputsWrapper>
+
+      <InputsWrapper>
         <p>Status</p>
-        <ul>
+        <List>
           {status.map((item, index) => {
             return (
-              <li key={index}>
+              <ListItem key={index}>
                 <input type='text' value={item} onChange={(e) => handleChange(e, index, status, setStatus)} />
-                <button onClick={(e) => removeInput(e, index, status, setStatus)}>Remover</button>
-              </li>
+                <RemoveIcon onClick={(e) => removeInput(e, index, status, setStatus)} />
+              </ListItem>
             );
           })}
-        </ul>
-        <button onClick={(e) => {
+        </List>
+        <Button type='button' onClick={(e) => {
           addInput(e, status, setStatus);
-        }}>Adicionar</button>
-      </div>
+        }}>Adicionar</Button>
+      </InputsWrapper>
 
-      <div>
+      <InputsWrapper>
         <p>Solução</p>
-        <ul>
+        <List>
           {solutions.map((item, index) => {
             return (
-              <li key={index}>
+              <ListItem key={index}>
                 <input type='text' value={item} onChange={(e) => handleChange(e, index, solutions, setSolutions)} />
-                <button onClick={(e) => removeInput(e, index, solutions, setSolutions)}>Remover</button>
-              </li>
+                <RemoveIcon onClick={(e) => removeInput(e, index, solutions, setSolutions)} />
+              </ListItem>
             );
           })}
-        </ul>
-        <button onClick={(e) => {
+        </List>
+        <Button type='button' onClick={(e) => {
           addInput(e, solutions, setSolutions);
-        }}>Adicionar</button>
-      </div>
+        }}>Adicionar</Button>
+      </InputsWrapper>
 
-      <div>
+      <InputsWrapper>
         <p>Parâmetros Testados</p>
-        <ul>
+        <List>
           {params.map((item, index) => {
             return (
-              <li key={index}>
+              <ListItem key={index}>
                 <input type='text' value={item} onChange={(e) => handleChange(e, index, params, setParams)} />
-                <button onClick={(e) => removeInput(e, index, params, setParams)}>Remover</button>
-              </li>
+                <RemoveIcon onClick={(e) => removeInput(e, index, params, setParams)} />
+              </ListItem>
             );
           })}
-        </ul>
-        <button onClick={(e) => {
+        </List>
+        <Button type='button' onClick={(e) => {
           addInput(e, params, setParams);
-        }}>Adicionar</button>
-      </div>
+        }}>Adicionar</Button>
+      </InputsWrapper>
 
-      <div>
+      <InputsWrapper>
         <p>Materiais</p>
-        <ul>
+        <List>
           {materials.map((item, index) => {
             return (
-              <li key={index}>
+              <ListItem key={index}>
                 <input type='text' value={item.name} onChange={(e) => handleChangeObj(e, index, materials, setMaterials)} />
                 <input type='number' value={item.quantity} onChange={(e) => handleChangeObj(e, index, materials, setMaterials, true)} />
-                <button onClick={(e) => removeInput(e, index, materials, setMaterials)}>Remover</button>
-              </li>
+                <RemoveIcon onClick={(e) => removeInput(e, index, materials, setMaterials)} />
+              </ListItem>
             );
           })}
-        </ul>
-        <button onClick={(e) => {
+        </List>
+        <Button type='button' onClick={(e) => {
           addInput(e, materials, setMaterials, true);
-        }}>Adicionar</button>
-      </div>
+        }}>Adicionar</Button>
+      </InputsWrapper>
 
-      <div>
+      <InputsWrapper>
         <p>Equipamentos</p>
-        <ul>
+        <List>
           {equipaments.map((item, index) => {
             return (
-              <li key={index}>
+              <ListItem key={index}>
                 <input type='text' value={item.name} onChange={(e) => handleChangeObj(e, index, equipaments, setEquipaments)} />
                 <input type='number' value={item.quantity} onChange={(e) => handleChangeObj(e, index, equipaments, setEquipaments, true)} />
-                <button onClick={(e) => removeInput(e, index, equipaments, setEquipaments)}>Remover</button>
-              </li>
+                <RemoveIcon onClick={(e) => removeInput(e, index, equipaments, setEquipaments)} />
+              </ListItem>
             );
           })}
-        </ul>
-        <button onClick={(e) => {
+        </List>
+        <Button type='button' onClick={(e) => {
           addInput(e, equipaments, setEquipaments, true);
-        }}>Adicionar</button>
-      </div>
+        }}>Adicionar</Button>
+      </InputsWrapper>
 
-      <div>
+      <InputsWrapper>
         <p>Serviços</p>
-        <ul>
+        <List>
           {services.map((item, index) => {
             return (
-              <li key={index}>
+              <ListItem key={index}>
                 <input type='text' value={item} onChange={(e) => handleChange(e, index, services, setServices)} />
-                <button onClick={(e) => removeInput(e, index, services, setServices)}>Remover</button>
-              </li>
+                <RemoveIcon onClick={(e) => removeInput(e, index, services, setServices)} />
+              </ListItem>
             );
           })}
-        </ul>
-        <button onClick={(e) => {
+        </List>
+        <Button type='button' onClick={(e) => {
           addInput(e, services, setServices);
-        }}>Adicionar</button>
-      </div>
+        }}>Adicionar</Button>
+      </InputsWrapper>
 
-      <div>
+      <InputsWrapper>
         <p>Custos</p>
-        <ul>
+        <List>
           {costs.map((item, index) => {
             return (
-              <li key={index}>
+              <ListItem key={index}>
                 <input type='text' value={item} onChange={(e) => handleChange(e, index, costs, setCosts)} />
-                <button onClick={(e) => removeInput(e, index, costs, setCosts)}>Remover</button>
-              </li>
+                <RemoveIcon onClick={(e) => removeInput(e, index, costs, setCosts)} />
+              </ListItem>
             );
           })}
-        </ul>
-        <button onClick={(e) => {
+        </List>
+        <Button type='button' onClick={(e) => {
           addInput(e, costs, setCosts);
-        }}>Adicionar</button>
-      </div>
+        }}>Adicionar</Button>
+      </InputsWrapper>
 
-      <div>
+      <InputsWrapper>
         <p>Imagens</p>
-        <ul>
+        <List>
           {images.map((item, index) => {
             return (
-              <li key={index}>
+              <ListItem key={index}>
                 <label>
                   <span>{item.name || 'Escolha uma imagem'}</span>
                   <input type='file' accept='image/*' onChange={(e) => handleChangeImage(e, index, images, setImages)} />
                 </label>
-                <button onClick={(e) => removeInput(e, index, images, setImages)}>Remover</button>
-              </li>
+                <RemoveIcon onClick={(e) => removeInput(e, index, images, setImages)} />
+              </ListItem>
             );
           })}
-        </ul>
-        {images.length < 2 && <button onClick={(e) => {
+        </List>
+        {images.length < 2 && <Button type='button' onClick={(e) => {
           addInput(e, images, setImages, true, true);
-        }}>Adicionar</button>}
-      </div>
-
-      <button onClick={handlePrint}>Imprimir</button>
-      <button onClick={hanleRemoveAll}>Remover Todos</button>
-    </form>
+        }}>Adicionar</Button>}
+      </InputsWrapper>
+      <LastButtons>
+        <LastButton type='submit' onClick={handlePrint}>Imprimir</LastButton>
+        <LastButton type='reset' onClick={hanleRemoveAll}>Remover Todos</LastButton>
+      </LastButtons>
+    </Container>
   );
 };
 

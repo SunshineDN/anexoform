@@ -37,13 +37,13 @@ const Container = styled.div`
 
 const PdfPage = () => {
   const { pdfRef } = useContext(PdfRef);
-  const { status, solutions, params, materials, equipaments, services, costs, images } = useContext(ObjContext);
+  const { objective, status, solutions, params, materials, equipaments, services, costs, images } = useContext(ObjContext);
 
   return (
     <Span ref={pdfRef}>
       <Container>
         <Bar>Anexo</Bar>
-        <Objective />
+        <Objective objective={objective} />
         <ActualStatus status={status} images={images} />
         <Scope solution={solutions} />
         <TestedParameters params={params} />
