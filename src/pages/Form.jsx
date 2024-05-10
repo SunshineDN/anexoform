@@ -71,6 +71,34 @@ const Input = styled.input`
   }
 `;
 
+const TextArea = styled.textarea`
+  box-shadow: inset #abacaf 0 0 0 2px;
+  border: 0;
+  background: rgba(0, 0, 0, 0);
+  appearance: none;
+  width: 100%;
+  position: relative;
+  border-radius: 3px;
+  padding: 9px 12px;
+  line-height: 1.4;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  font-weight: 400;
+  height: 150px;
+  transition: all .2s ease;
+  min-height: 100px;
+  resize: none;
+
+  &:hover{
+      box-shadow: 0 0 0 0 #fff inset, #c8102e 0 0 0 2px;
+  }
+  &:focus{
+      background: #fff;
+      outline: 0;
+      box-shadow: 0 0 0 0 #fff inset, #c8102e 0 0 0 3px;
+  }
+`;
+
 const Button = styled.button`
   padding: 15px 20px;
   background-color: #f3f3f3;
@@ -226,7 +254,7 @@ const Form = () => {
   const handlePrint = (e) => {
     e.preventDefault();
     console.log('Printing...');
-    console.log(pdfRef.current);
+    console.log(pdfRef.current === null ? '*REF CAPTURADO*' : '*REF NÃO CAPTURADO*');
     //Executar a função de impressão após 5 segundos
     setIsInvisible(true);
     setTimeout(() => {
@@ -316,7 +344,7 @@ const Form = () => {
       <InputsContainer>
         <InputsWrapper>
           <H3>Objetivo</H3>
-          <Input type='text' value={objective} onChange={(e) => setObjective(e.target.value)} />
+          <TextArea value={objective} placeholder='Descrição do objetivo' onChange={(e) => setObjective(e.target.value)} />
         </InputsWrapper>
 
         <InputsWrapper>

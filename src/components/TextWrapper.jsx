@@ -8,6 +8,7 @@ const Container = styled.div`
   align-items: flex-start;
   flex: ${props => props.$_flex ? '1' : 'none'};
   ${props => props.$_center && 'flex: .5'}; // 50%
+  width: 100%;
 
   & * {
     font-size: .625rem !important; // 10px
@@ -27,6 +28,7 @@ const ItemsWrapper = styled.ul`
 
 const Item = styled.li`
   list-style: ${props => props.$_styled ? 'none' : 'initial'};
+  line-break: anywhere;
 `;
 
 const TextWrapper = ({ items, ...props }) => {
