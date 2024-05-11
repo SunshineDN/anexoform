@@ -88,6 +88,7 @@ const TextArea = styled.textarea`
   transition: all .2s ease;
   min-height: 100px;
   resize: none;
+  font-family: 'Inter', sans-serif;
 
   &:hover{
       box-shadow: 0 0 0 0 #fff inset, #c8102e 0 0 0 2px;
