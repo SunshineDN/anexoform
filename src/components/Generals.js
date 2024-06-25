@@ -16,5 +16,4 @@ export const Title = styled.h2`
 export const Description = styled.p`
   font-weight: 400;
   color: #000;
-  line-break: anywhere;
 `;

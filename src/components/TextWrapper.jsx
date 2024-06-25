@@ -29,7 +29,6 @@ const ItemsWrapper = styled.ul`
 
 const Item = styled.li`
   list-style: ${props => props.$_styled ? 'none' : 'initial'};
-  line-break: anywhere;
 `;
 
 const TextWrapper = ({ items, ...props }) => {

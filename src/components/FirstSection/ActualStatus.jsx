@@ -26,7 +26,7 @@ const ActualStatus = ({ status, images }) => {
 
   return (
     <Container section={'1st'} $_flexFlow={'row wrap'} $_alignItems={'flex-start'} $_justifyContent={'space-between'}>
-      <TextWrapper items={status}>Situação Atual</TextWrapper>
+      <TextWrapper $_width='100%' items={status}>Situação Atual</TextWrapper>
       <ImagesWrapper>
         {images?.map((image, index) => {
           return <Image key={index} src={image.path} />;
