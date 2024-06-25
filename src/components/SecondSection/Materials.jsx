@@ -9,8 +9,11 @@ const Materials = ({ materials }) => {
       <TextWrapper $_flex $_styled items={materials.map((item) => {return item.name;})}>
         Itens
       </TextWrapper>
-      <TextWrapper $_flex $_styled $_center items={materials.map((item) => {return item.quantity;})}>
+      <TextWrapper $_flex $_styled items={materials.map((item) => {return item.quantity;})}>
         Qntd.
+      </TextWrapper>
+      <TextWrapper $_flex $_styled items={materials.map((item) => {return item.unit;})}>
+        Uni.
       </TextWrapper>
     </Container>
   );

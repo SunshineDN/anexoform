@@ -6,9 +6,10 @@ const Container = styled.div`
   flex-flow: column nowrap;
   gap: .625rem; // 10px
   align-items: flex-start;
-  flex: ${props => props.$_flex ? '1' : 'none'};
-  ${props => props.$_center && 'flex: .5'}; // 50%
-  width: 100%;
+  /* flex: ${props => props.$_flex ? '1' : 'none'}; */
+  /* ${props => props.$_center && 'flex: .5'}; // 50% */
+  width: ${props => props.$_width ? props.$_width : '31%'};
+  background-color: ${props => props.$_background || 'transparent'};
 
   & * {
     font-size: .625rem !important; // 10px
@@ -33,7 +34,7 @@ const Item = styled.li`
 
 const TextWrapper = ({ items, ...props }) => {
   return (
-    <Container $_center={props.$_center} $_flex={props.$_flex}>
+    <Container $_width={props.$_width} $_background={props.$_background} $_center={props.$_center} $_flex={props.$_flex}>
       <Title>{props.children}</Title>
       <ItemsWrapper $_center={props.$_center} $_styled={props.$_styled}>
         {items?.map((item, index) => {

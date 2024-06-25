@@ -11,6 +11,7 @@ const ImagesWrapper = styled.div`
   gap: .625rem; // 10px
   align-items: center;
   justify-content: center;
+  width: 100%;
 `;
 
 const Image = styled.img`

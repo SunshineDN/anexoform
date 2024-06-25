@@ -15,7 +15,7 @@ export const ObjContextProvider = ({ children }) => {
   // Exemplo: 'Fazer a certificação requer equipamentos especializados e envolve uma série de parâmetros a serem testados conforme determinação da norma técnica ANSI/TIA-568-C (2009).',
   const [params, setParams] = useState([]);
 
-  // Exemplo: { name: 'Fita Rotuladora Tzr-Fx231 12Mm', quantity: 2 }
+  // Exemplo: { name: 'Fita Rotuladora Tzr-Fx231 12Mm', quantity: 2, unit: 'cm' }
   const [materials, setMaterials] = useState([]);
 
   // Exemplo: { name: 'EAP620HD TP-LINK', quantity: 2 }
@@ -26,6 +26,8 @@ export const ObjContextProvider = ({ children }) => {
 
   // Exemplo: 'Substituição de cada Patch Cord 1,5m Soho Plus',
   const [costs, setCosts] = useState([]);
+
+  const [condictions, setCondictions] = useState([]);
 
   const [images, setImages] = useState([]);
 
@@ -39,6 +41,7 @@ export const ObjContextProvider = ({ children }) => {
     equipaments, setEquipaments,
     services, setServices,
     costs, setCosts,
+    condictions, setCondictions,
     images, setImages
   }}>
     {children}

@@ -249,6 +249,7 @@ const Form = () => {
     equipaments, setEquipaments,
     services, setServices,
     costs, setCosts,
+    condictions, setCondictions,
     images, setImages } = useContext(ObjContext);
   const { pdfRef } = useContext(PdfRef);
   const { setIsInvisible } = useContext(InvisibleContext);
@@ -276,6 +277,7 @@ const Form = () => {
     setEquipaments([]);
     setServices([]);
     setCosts([]);
+    setCondictions([]);
     setImages([]);
   };
 
@@ -294,6 +296,7 @@ const Form = () => {
         newList.push({
           name: '',
           quantity: '',
+          unit: ''
         });
       }
     } else {
@@ -313,12 +316,16 @@ const Form = () => {
     newArr[index] = value;
     setArr(newArr);
   };
-  const handleChangeObj = (e, index, arr, setArr, isQuantity) => {
+  const handleChangeObj = (e, index, arr, setArr, isQuantity = false, isUnit = false) => {
     const { value } = e.target;
     const newObjArr = [...arr];
     if (isQuantity) {
       newObjArr[index].quantity = value;
-    } else {
+    }
+    if (isUnit) {
+      newObjArr[index].unit = value;
+    }
+    if (!isQuantity && !isUnit) {
       newObjArr[index].name = value;
     }
     setArr(newObjArr);
@@ -366,7 +373,7 @@ const Form = () => {
         </InputsWrapper>
 
         <InputsWrapper>
-          <H3>Solução</H3>
+          <H3>Escopo - Solução</H3>
           <List>
             {solutions.map((item, index) => {
               return (
@@ -407,6 +414,7 @@ const Form = () => {
                 <ListItem key={index}>
                   <Input placeholder='Material' $flex='7' type='text' value={item.name} onChange={(e) => handleChangeObj(e, index, materials, setMaterials)} />
                   <Input placeholder='Qt.' type='text' value={item.quantity} onChange={(e) => handleChangeObj(e, index, materials, setMaterials, true)} />
+                  <Input placeholder='Un.' type='text' value={item.unit} onChange={(e) => handleChangeObj(e, index, materials, setMaterials, false, true)} />
                   <RemoveIcon onClick={(e) => removeInput(e, index, materials, setMaterials)} />
                 </ListItem>
               );
@@ -470,6 +478,23 @@ const Form = () => {
         </InputsWrapper>
 
         <InputsWrapper>
+          <H3>Demais Condições</H3>
+          <List>
+            {condictions.map((item, index) => {
+              return (
+                <ListItem key={index}>
+                  <Input type='text' value={item} onChange={(e) => handleChange(e, index, condictions, setCondictions)} />
+                  <RemoveIcon onClick={(e) => removeInput(e, index, condictions, setCondictions)} />
+                </ListItem>
+              );
+            })}
+          </List>
+          <Button type='button' onClick={(e) => {
+            addInput(e, condictions, setCondictions);
+          }}>Adicionar</Button>
+        </InputsWrapper>
+
+        <InputsWrapper>
           <H3>Imagens</H3>
           <List>
             {images.map((item, index) => {
@@ -484,7 +509,7 @@ const Form = () => {
               );
             })}
           </List>
-          {images.length < 2 && <Button type='button' onClick={(e) => {
+          {images.length < 4 && <Button type='button' onClick={(e) => {
             addInput(e, images, setImages, true, true);
           }}>Adicionar</Button>}
         </InputsWrapper>

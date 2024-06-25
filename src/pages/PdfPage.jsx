@@ -8,6 +8,7 @@ import Materials from '../components/SecondSection/Materials';
 import Equipament from '../components/SecondSection/Equipament';
 import Services from '../components/SecondSection/Services';
 import MoreCost from '../components/SecondSection/MoreCost';
+import OtherCondictions from '../components/SecondSection/OtherCondictions';
 import { useContext } from 'react';
 import { PdfRef } from '../context/PdfContext';
 import { ObjContext } from '../context/ObjContext';
@@ -37,24 +38,29 @@ const Container = styled.div`
 
 const PdfPage = () => {
   const { pdfRef } = useContext(PdfRef);
-  const { objective, status, solutions, params, materials, equipaments, services, costs, images } = useContext(ObjContext);
+  const { objective, status, solutions, params, materials, equipaments, services, costs, condictions, images } = useContext(ObjContext);
 
   return (
     <Span ref={pdfRef}>
       <Container>
         <Bar>Anexo</Bar>
-        <Objective objective={objective} />
-        <ActualStatus status={status} images={images} />
-        <Scope solution={solutions} />
-        <TestedParameters params={params} />
+        {objective.length === 0 ? null : <Objective objective={objective} />}
+        {status.length === 0 ? null : <ActualStatus status={status} images={images} />}
+        {solutions.length === 0 ? null : <Scope solution={solutions} />}
+        {params.length === 0 ? null : <TestedParameters params={params} />}
       </Container>
-      <Container>
-        <Bar>Anexo</Bar>
-        <Materials materials={materials} />
-        <Equipament equipaments={equipaments} />
-        <Services services={services} />
-        <MoreCost costs={costs} />
-      </Container>
+
+      {
+        materials.length === 0 && equipaments.length === 0 && services.length === 0 && costs.length === 0 && condictions.length === 0 ? null :
+          <Container>
+            <Bar>Anexo</Bar>
+            {materials.length === 0 ? null : <Materials materials={materials} />}
+            {equipaments.length === 0 ? null : <Equipament equipaments={equipaments} />}
+            {services.length === 0 ? null : <Services services={services} />}
+            {costs.length === 0 ? null : <MoreCost costs={costs} />}
+            {condictions.length === 0 ? null : <OtherCondictions condictions={condictions} />}
+          </Container>
+      }
     </Span>
   );
 };

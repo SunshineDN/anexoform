@@ -9,7 +9,7 @@ const Equipament = ({ equipaments }) => {
       <TextWrapper $_flex $_styled items={equipaments.map((item) => {return item.name;})}>
         Itens
       </TextWrapper>
-      <TextWrapper $_flex $_styled $_center items={equipaments.map((item) => {return item.quantity;})}>
+      <TextWrapper $_flex $_styled items={equipaments.map((item) => {return item.quantity;})}>
         Qntd.
       </TextWrapper>
     </Container>
