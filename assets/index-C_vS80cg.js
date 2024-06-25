@@ -283,7 +283,6 @@ border-radius: .625rem; // 10px
 `,J0=ee.p`
   font-weight: 400;
   color: #000;
-  line-break: anywhere;
 `,b0=ee.div`
   display: flex;
   /* flex-flow: column nowrap; */
@@ -333,7 +332,6 @@ border-radius: .625rem; // 10px
   ${e=>e.$_center&&"margin-left: 0.450rem; width: 1.2rem;"}
 `,ov=ee.li`
   list-style: ${e=>e.$_styled?"none":"initial"};
-  line-break: anywhere;
 `,Lt=({items:e,...t})=>g.jsxs(nv,{$_width:t.$_width,$_background:t.$_background,$_center:t.$_center,$_flex:t.$_flex,children:[g.jsx(Fs,{children:t.children}),g.jsx(rv,{$_center:t.$_center,$_styled:t.$_styled,children:e==null?void 0:e.map((n,r)=>g.jsx(ov,{$_styled:t.$_styled,children:n},r))})]}),lv=ee.div`
   display: flex;
   flex-flow: row nowrap;
@@ -347,7 +345,7 @@ border-radius: .625rem; // 10px
   object-fit: cover;
   border-radius: .781rem; // 12.5px
   border: .031rem solid #000; // 0.5px
-`,uv=({status:e,images:t})=>g.jsxs(kn,{section:"1st",$_flexFlow:"row wrap",$_alignItems:"flex-start",$_justifyContent:"space-between",children:[g.jsx(Lt,{items:e,children:"Situação Atual"}),g.jsx(lv,{children:t==null?void 0:t.map((n,r)=>g.jsx(iv,{src:n.path},r))}),g.jsx(ti,{})]}),sv=({solution:e})=>g.jsxs(kn,{section:"1st",children:[g.jsx(Fs,{children:"Escopo da Proposta"}),g.jsx(Lt,{$_width:!0,items:e,children:"Solução Cabeamento Estruturado"}),g.jsx(ti,{})]}),av=({params:e})=>g.jsx(Lt,{$_width:"100%",items:e,children:"Parâmetros Testados"}),cv=({materials:e})=>g.jsxs(kn,{section:"2nd",children:[g.jsx(ho,{$lighted:!0,children:"Materiais"}),g.jsx(Lt,{$_flex:!0,$_styled:!0,items:e.map(t=>t.name),children:"Itens"}),g.jsx(Lt,{$_flex:!0,$_styled:!0,items:e.map(t=>t.quantity),children:"Qntd."}),g.jsx(Lt,{$_flex:!0,$_styled:!0,items:e.map(t=>t.unit),children:"Uni."})]}),fv=({equipaments:e})=>g.jsxs(kn,{section:"2nd",children:[g.jsx(ho,{$lighted:!0,children:"Equipamentos"}),g.jsx(Lt,{$_flex:!0,$_styled:!0,items:e.map(t=>t.name),children:"Itens"}),g.jsx(Lt,{$_flex:!0,$_styled:!0,items:e.map(t=>t.quantity),children:"Qntd."})]}),dv=ee.ul`
+`,uv=({status:e,images:t})=>g.jsxs(kn,{section:"1st",$_flexFlow:"row wrap",$_alignItems:"flex-start",$_justifyContent:"space-between",children:[g.jsx(Lt,{$_width:"100%",items:e,children:"Situação Atual"}),g.jsx(lv,{children:t==null?void 0:t.map((n,r)=>g.jsx(iv,{src:n.path},r))}),g.jsx(ti,{})]}),sv=({solution:e})=>g.jsxs(kn,{section:"1st",children:[g.jsx(Fs,{children:"Escopo da Proposta"}),g.jsx(Lt,{$_width:!0,items:e,children:"Solução Cabeamento Estruturado"}),g.jsx(ti,{})]}),av=({params:e})=>g.jsx(Lt,{$_width:"100%",items:e,children:"Parâmetros Testados"}),cv=({materials:e})=>g.jsxs(kn,{section:"2nd",children:[g.jsx(ho,{$lighted:!0,children:"Materiais"}),g.jsx(Lt,{$_flex:!0,$_styled:!0,items:e.map(t=>t.name),children:"Itens"}),g.jsx(Lt,{$_flex:!0,$_styled:!0,items:e.map(t=>t.quantity),children:"Qntd."}),g.jsx(Lt,{$_flex:!0,$_styled:!0,items:e.map(t=>t.unit),children:"Uni."})]}),fv=({equipaments:e})=>g.jsxs(kn,{section:"2nd",children:[g.jsx(ho,{$lighted:!0,children:"Equipamentos"}),g.jsx(Lt,{$_flex:!0,$_styled:!0,items:e.map(t=>t.name),children:"Itens"}),g.jsx(Lt,{$_flex:!0,$_styled:!0,items:e.map(t=>t.quantity),children:"Qntd."})]}),dv=ee.ul`
   display: flex;
   flex-flow: column nowrap;
   gap: .094rem; // 1.5px
