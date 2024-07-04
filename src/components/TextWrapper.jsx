@@ -29,6 +29,8 @@ const ItemsWrapper = styled.ul`
 
 const Item = styled.li`
   list-style: ${props => props.$_styled ? 'none' : 'initial'};
+  height: ${props => props.$_itemH || 'auto'};
+  ${props => props.$_itemH ? 'align-content: center;' : null}
 `;
 
 const TextWrapper = ({ items, ...props }) => {
@@ -37,7 +39,7 @@ const TextWrapper = ({ items, ...props }) => {
       <Title>{props.children}</Title>
       <ItemsWrapper $_center={props.$_center} $_styled={props.$_styled}>
         {items?.map((item, index) => {
-          return <Item $_styled={props.$_styled} key={index}>{item}</Item>;
+          return <Item $_itemH={props.$_itemH} $_styled={props.$_styled} key={index}>{item}</Item>;
         })}
       </ItemsWrapper>
     </Container>

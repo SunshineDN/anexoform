@@ -7,7 +7,7 @@ import { Container } from '../Container';
 
 const ImagesWrapper = styled.div`
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   gap: .625rem; // 10px
   align-items: center;
   justify-content: center;
@@ -15,8 +15,10 @@ const ImagesWrapper = styled.div`
 `;
 
 const Image = styled.img`
-  width: 170px;
-  height: 300px;
+  /* width: 170px;
+  height: 300px; */
+  width: 300px;
+  height: 170px;
   object-fit: cover;
   border-radius: .781rem; // 12.5px
   border: .031rem solid #000; // 0.5px

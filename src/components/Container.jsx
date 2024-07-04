@@ -20,7 +20,7 @@ const SecondWrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
   gap: 15px;
-  align-items: center;
+  align-items: ${props => props.$_align || 'center'};
   justify-content: flex-start;
   width: 100%;
 
@@ -36,7 +36,7 @@ export const Container = ({ section, ...props }) => {
         <FirstWrapper $_flexFlow={props.$_flexFlow} $_alignItems={props.$_alignItems} $_justifyContent={props.$_justifyContent}>
           {props.children}
         </FirstWrapper> || section === '2nd' &&
-        <SecondWrapper>
+        <SecondWrapper $_align={props.$_align}>
           {props.children}
         </SecondWrapper>
       }
