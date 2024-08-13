@@ -19,6 +19,23 @@ const Container = styled.form`
   & > * {
     font-family: 'Inter', sans-serif !important;
   }
+
+  #proposal {
+    width: 100%;
+    padding: 0 35px;
+
+    & input {
+      width: calc(50% - 20px);
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 0;
+
+      & input {
+        width: 100%;
+      }
+    }
+  }
 `;
 
 const InputsContainer = styled.div`
@@ -242,7 +259,9 @@ const Label = styled.label`
 `;
 
 const Form = () => {
-  const { objective, setObjective, status, setStatus,
+  const { proposal_number, setProposalNumber,
+    objective, setObjective,
+    status, setStatus,
     solutions, setSolutions,
     params, setParams,
     materials, setMaterials,
@@ -269,6 +288,7 @@ const Form = () => {
   });
   const hanleRemoveAll = (e) => {
     e.preventDefault();
+    setProposalNumber('');
     setObjective('');
     setStatus([]);
     setSolutions([]);
@@ -349,7 +369,14 @@ const Form = () => {
     <Container action=''>
       <h1>Formulário</h1>
 
+
+      <InputsWrapper id='proposal'>
+        <H3>Número da Proposta</H3>
+        <Input type='text' value={proposal_number} onChange={(e) => setProposalNumber(e.target.value)} />
+      </InputsWrapper>
+
       <InputsContainer>
+
         <InputsWrapper>
           <H3>Objetivo</H3>
           <TextArea value={objective} placeholder='Descrição do objetivo' onChange={(e) => setObjective(e.target.value)} />

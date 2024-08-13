@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Header = styled.header`
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding: 5px;
   background-color: ${(props) => props.$lighted ? '#c1aca7' : '#a78981'};
@@ -20,6 +20,7 @@ const Bar = ({ children, ...props }) => {
   return (
     <Header $lighted={props.$lighted}>
       <Title>{children}</Title>
+      <Title>N° {props.number}</Title>
     </Header>
   );
 };

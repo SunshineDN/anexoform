@@ -3,6 +3,9 @@ import { createContext, useState } from 'react';
 export const ObjContext = createContext();
 
 export const ObjContextProvider = ({ children }) => {
+  // Exemplo: '821/1'
+  const [proposal_number, setProposalNumber] = useState('');
+
   // Exemplo: 'Fornecer materiais e serviços para organizar e identificar 142 pontos de rede, para o cliente: Multilog CD Salvador, situada na Rua José Roberto Otoni, 864 - Valéria, Salvador - BA, 41301-325.';
   const [objective, setObjective] = useState('');
 
@@ -33,6 +36,7 @@ export const ObjContextProvider = ({ children }) => {
 
   return (
   <ObjContext.Provider value={{
+    proposal_number, setProposalNumber,
     objective, setObjective,
     status, setStatus,
     solutions, setSolutions,

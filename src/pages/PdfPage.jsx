@@ -38,12 +38,12 @@ const Container = styled.div`
 
 const PdfPage = () => {
   const { pdfRef } = useContext(PdfRef);
-  const { objective, status, solutions, params, materials, equipaments, services, costs, condictions, images } = useContext(ObjContext);
+  const { proposal_number, objective, status, solutions, params, materials, equipaments, services, costs, condictions, images } = useContext(ObjContext);
 
   return (
     <Span ref={pdfRef}>
       <Container>
-        <Bar>Anexo</Bar>
+        <Bar number={proposal_number}>Proposta Técnica</Bar>
         {objective.length === 0 ? null : <Objective objective={objective} />}
         {status.length === 0 ? null : <ActualStatus status={status} images={images} />}
         {solutions.length === 0 ? null : <Scope solution={solutions} />}
@@ -53,7 +53,7 @@ const PdfPage = () => {
       {
         materials.length === 0 && equipaments.length === 0 && services.length === 0 && costs.length === 0 && condictions.length === 0 ? null :
           <Container>
-            <Bar>Anexo</Bar>
+            <Bar number={proposal_number}>Proposta Técnica</Bar>
             {materials.length === 0 ? null : <Materials materials={materials} />}
             {equipaments.length === 0 ? null : <Equipament equipaments={equipaments} />}
             {services.length === 0 ? null : <Services services={services} />}
