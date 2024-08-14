@@ -4,6 +4,6 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/docx-compos/' // GitHub Pages
-  // base: '/anexoform/' // Production
+  // base: '/docx-compos/' // GitHub Pages
+  base: '/anexoform/' // Production
 });
