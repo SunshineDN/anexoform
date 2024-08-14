@@ -371,7 +371,7 @@ const Form = () => {
 
 
       <InputsWrapper id='proposal'>
-        <H3>Número da Proposta</H3>
+        <H3>Número do Atendimento</H3>
         <Input type='text' value={proposal_number} onChange={(e) => setProposalNumber(e.target.value)} />
       </InputsWrapper>
 
